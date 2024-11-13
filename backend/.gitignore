@@ -1,0 +1,10 @@
+venv/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.env
+*.cfg
