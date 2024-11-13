@@ -16,5 +16,5 @@ Este proyecto final fue realizado por mi persona para obtener el certificado del
   npm install
 
 * 4) Para ejecutar el proyecto, debes estar dentro de la carpeta de frontend y colocar el siguiente comando en la Terminal de Git Bash:
-    npm run dev    
+    npm run start    
 ```
