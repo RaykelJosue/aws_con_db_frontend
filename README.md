@@ -1,4 +1,4 @@
-# Super CRUD - AWS con DB
+# Super CRUD - AWS con DB - Frontend
 
 Este proyecto final fue realizado por mi persona para obtener el certificado del curso de Social Oplesk de Full Stack Developer, Nivel Avanzado.
 
@@ -7,7 +7,7 @@ Este proyecto final fue realizado por mi persona para obtener el certificado del
 
 ```diff
 * 1) Tienes que clonar el repositorio desde la terminal de Git Bash
-  git clone https://github.com/RaykelJosue/aws_con_db.git
+  git clone https://github.com/RaykelJosue/aws_con_db_frontend.git
   
 * 2) Desde la Terminal de Git Bash, cambiar el directorio hacia la carpeta de backend e instalar los paquetes necesarios para el backend.
   pip install -r requirements.txt
