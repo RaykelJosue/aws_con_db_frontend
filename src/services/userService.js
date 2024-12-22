@@ -26,7 +26,8 @@ export const obtenerUsuarios = async (params = {}) => {
         'Content-Type': 'application/json',
       },
     });
-    return await handleResponse(respuesta);
+    const data = await respuesta.json();
+    return data;
   } catch (error) {
     console.error("Error al obtener usuarios:", error);
     throw error;
