@@ -90,7 +90,11 @@ export const eliminarUsuario = async (id) => {
 // Obtener el total de usuarios
 export const obtenerTotalUsuarios = async () => {
   try {
-    const respuesta = await fetch(`${API_BASE_URL}/api/usuarios/total`);
+    const respuesta = await fetch(`${API_BASE_URL}/api/usuarios/total`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     return await handleResponse(respuesta);
   } catch (error) {
     console.error("Error al obtener el total de usuarios:", error);
