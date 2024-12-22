@@ -24,10 +24,10 @@ export const obtenerUsuarios = async (params = {}) => {
     const respuesta = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
       },
     });
-    const data = await respuesta.json();
-    return data;
+    return await handleResponse(respuesta);
   } catch (error) {
     console.error("Error al obtener usuarios:", error);
     throw error;
@@ -37,7 +37,14 @@ export const obtenerUsuarios = async (params = {}) => {
 // Obtener un usuario específico por ID
 export const obtenerUsuarioPorId = async (id) => {
   try {
-    const respuesta = await fetch(`${API_BASE_URL}/api/usuarios/${id}`);
+    const respuesta = await fetch(`${API_BASE_URL}/api/usuarios/${id}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true'
+        }
+      }
+    );
     return await handleResponse(respuesta);
   } catch (error) {
     console.error("Error al obtener usuario:", error);
@@ -52,6 +59,7 @@ export const agregarUsuario = async (usuario) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
       },
       body: JSON.stringify(usuario),
     });
@@ -69,6 +77,7 @@ export const actualizarUsuario = async (id, datosActualizados) => {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
       },
       body: JSON.stringify(datosActualizados),
     });
@@ -84,6 +93,10 @@ export const eliminarUsuario = async (id) => {
   try {
     const respuesta = await fetch(`${API_BASE_URL}/api/usuarios/${id}`, {
       method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
+      }
     });
     return await handleResponse(respuesta);
   } catch (error) {
@@ -98,6 +111,7 @@ export const obtenerTotalUsuarios = async () => {
     const respuesta = await fetch(`${API_BASE_URL}/api/usuarios/total`, {
       headers: {
         'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
       },
     });
     return await handleResponse(respuesta);
