@@ -21,7 +21,11 @@ export const obtenerUsuarios = async (params = {}) => {
     if (params.filtro && params.busqueda) {
       url += `?filtro=${encodeURIComponent(params.filtro)}&busqueda=${encodeURIComponent(params.busqueda)}`;
     }
-    const respuesta = await fetch(url);
+    const respuesta = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
     return await handleResponse(respuesta);
   } catch (error) {
     console.error("Error al obtener usuarios:", error);
