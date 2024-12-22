@@ -1,25 +1,28 @@
 // Define la URL base para tu API
 const API_BASE_URL = process.env.REACT_APP_API_URL;
 
+// Función helper para manejar respuestas
+const handleResponse = async (response) => {
+  const contentType = response.headers.get("content-type");
+  if (!contentType || !contentType.includes("application/json")) {
+    throw new Error("La respuesta no es JSON válido");
+  }
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.error || 'Error en la petición');
+  }
+  return data;
+};
+
 // Obtener todos los usuarios
 export const obtenerUsuarios = async (params = {}) => {
   try {
-    let url = `${API_BASE_URL}/usuarios`;
+    let url = `${API_BASE_URL}/api/usuarios`;
     if (params.filtro && params.busqueda) {
-      url += `?filtro=${params.filtro}&busqueda=${params.busqueda}`;
+      url += `?filtro=${encodeURIComponent(params.filtro)}&busqueda=${encodeURIComponent(params.busqueda)}`;
     }
     const respuesta = await fetch(url);
-    if (!respuesta.ok) {
-      throw new Error('La respuesta de la red no fue satisfactoria');
-    }
-    const data = await respuesta.json();
-    console.log('Datos recibidos del servidor:', data);
-
-    if (!Array.isArray(data)) {
-      throw new Error('Los datos obtenidos no son un array');
-    }
-
-    return data;
+    return await handleResponse(respuesta);
   } catch (error) {
     console.error("Error al obtener usuarios:", error);
     throw error;
@@ -29,11 +32,8 @@ export const obtenerUsuarios = async (params = {}) => {
 // Obtener un usuario específico por ID
 export const obtenerUsuarioPorId = async (id) => {
   try {
-    const respuesta = await fetch(`${API_BASE_URL}/usuarios/${id}`);
-    if (!respuesta.ok) {
-      throw new Error('La respuesta de la red no fue satisfactoria');
-    }
-    return await respuesta.json();
+    const respuesta = await fetch(`${API_BASE_URL}/api/usuarios/${id}`);
+    return await handleResponse(respuesta);
   } catch (error) {
     console.error("Error al obtener usuario:", error);
     throw error;
@@ -43,17 +43,14 @@ export const obtenerUsuarioPorId = async (id) => {
 // Crear un nuevo usuario
 export const agregarUsuario = async (usuario) => {
   try {
-    const respuesta = await fetch(`${API_BASE_URL}/usuarios`, {
+    const respuesta = await fetch(`${API_BASE_URL}/api/usuarios`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(usuario),
     });
-    if (!respuesta.ok) {
-      throw new Error('La respuesta de la red no fue satisfactoria');
-    }
-    return await respuesta.json();
+    return await handleResponse(respuesta);
   } catch (error) {
     console.error("Error al agregar usuario:", error);
     throw error;
@@ -63,17 +60,14 @@ export const agregarUsuario = async (usuario) => {
 // Actualizar un usuario existente
 export const actualizarUsuario = async (id, datosActualizados) => {
   try {
-    const respuesta = await fetch(`${API_BASE_URL}/usuarios/${id}`, {
+    const respuesta = await fetch(`${API_BASE_URL}/api/usuarios/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(datosActualizados),
     });
-    if (!respuesta.ok) {
-      throw new Error('La respuesta de la red no fue satisfactoria');
-    }
-    return await respuesta.json();
+    return await handleResponse(respuesta);
   } catch (error) {
     console.error("Error al actualizar usuario:", error);
     throw error;
@@ -83,13 +77,10 @@ export const actualizarUsuario = async (id, datosActualizados) => {
 // Eliminar un usuario
 export const eliminarUsuario = async (id) => {
   try {
-    const respuesta = await fetch(`${API_BASE_URL}/usuarios/${id}`, {
+    const respuesta = await fetch(`${API_BASE_URL}/api/usuarios/${id}`, {
       method: 'DELETE',
     });
-    if (!respuesta.ok) {
-      throw new Error('La respuesta de la red no fue satisfactoria');
-    }
-    return await respuesta.json();
+    return await handleResponse(respuesta);
   } catch (error) {
     console.error("Error al eliminar usuario:", error);
     throw error;
@@ -99,11 +90,8 @@ export const eliminarUsuario = async (id) => {
 // Obtener el total de usuarios
 export const obtenerTotalUsuarios = async () => {
   try {
-    const respuesta = await fetch(`${API_BASE_URL}/usuarios/total`);
-    if (!respuesta.ok) {
-      throw new Error('La respuesta de la red no fue satisfactoria');
-    }
-    return await respuesta.json();
+    const respuesta = await fetch(`${API_BASE_URL}/api/usuarios/total`);
+    return await handleResponse(respuesta);
   } catch (error) {
     console.error("Error al obtener el total de usuarios:", error);
     throw error;
