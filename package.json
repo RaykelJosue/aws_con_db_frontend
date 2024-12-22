@@ -12,7 +12,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\"",
+    "start": "react-scripts start",
     "start-frontend": "react-scripts start",
     "dev": "npm run start",
     "build": "react-scripts build",

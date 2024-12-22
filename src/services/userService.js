@@ -1,5 +1,5 @@
 // Define la URL base para tu API
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 // Obtener todos los usuarios
 export const obtenerUsuarios = async (params = {}) => {
@@ -15,7 +15,6 @@ export const obtenerUsuarios = async (params = {}) => {
     const data = await respuesta.json();
     console.log('Datos recibidos del servidor:', data);
 
-    // Verificar si los datos son un array
     if (!Array.isArray(data)) {
       throw new Error('Los datos obtenidos no son un array');
     }
@@ -26,7 +25,6 @@ export const obtenerUsuarios = async (params = {}) => {
     throw error;
   }
 };
-
 
 // Obtener un usuario específico por ID
 export const obtenerUsuarioPorId = async (id) => {
