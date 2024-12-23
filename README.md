@@ -2,8 +2,6 @@
 
 Este proyecto final fue realizado por mi persona para obtener el certificado del curso de Social Oplesk de Full Stack Developer, Nivel Avanzado.
 
-Por modificar...
-
 
 ## Tutorial para ejecutar el proyecto de manera correcta
 
