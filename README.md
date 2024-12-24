@@ -2,7 +2,7 @@
 
 Este proyecto final fue realizado por mi persona para obtener el certificado del curso de Social Oplesk de Full Stack Developer, Nivel Avanzado.
 
-Nota: La parte explicativa de abajo, no aplica para hacerlo local, ya que el proyecto está en internet. Pero puede intentar ejecutarlo de manera local sin ningún problema.
+Nota:La parte explicativa de abajo, no aplica para hacerlo local, ya que el proyecto está en internet. Pero puede intentar ejecutarlo de manera local sin ningún problema.
 
 ## Tutorial para ejecutar el proyecto de manera correcta
 
